@@ -27,23 +27,17 @@ public class CaminhoArquivo {
     }
 
     public static CaminhoArquivo getInstance(Integer id) {
-        String b = "/tmp/";
-        String d = null;
-        if (id <= 1000) {
-            d = b + id;
-        } else {
-            int i = id;
-            boolean f = true;
-            while (f) {
-                if (id <= (i * 1000)) {
-                    d = b + i;
-                    f = false;
-                }
-                i++;
-            }
-        }
-        return new CaminhoArquivo(Paths.get(d), Paths.get(d));
+        String b = "/tmp/", d, a = String.valueOf(id);
 
+        b += id <=1000? 1 : ((double)id /1000) == Integer.parseInt(a.substring(0, a.length()-3)) ? (id /1000): (id /1000)+1;
+
+        d = b +"/"+ id;
+
+        return new CaminhoArquivo(Paths.get(b), Paths.get(d));
     }
 
+    public static RuntimeException getInstance() {
+
+        return new RuntimeException("É esperado um valor inteiro no parâmetro do método CaminhoArquivo.getInstance()");
+    }
 }

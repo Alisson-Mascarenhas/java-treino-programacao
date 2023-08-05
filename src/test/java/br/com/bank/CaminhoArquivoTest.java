@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CaminhoArquivoTest {
 
     @Test
-    @Disabled
+    //@Disabled
     public void deve_montar_caminho_para_arquivo() {
 
         CaminhoArquivo caminhoArquivo = CaminhoArquivo.getInstance(1);
@@ -38,6 +38,19 @@ class CaminhoArquivoTest {
         assertEquals(Paths.get("/tmp/3"), caminhoArquivo.getDiretorio());
         assertEquals(Paths.get("/tmp/3/2001"), caminhoArquivo.getArquivo());
 
+        /*
+        caminhoArquivo = CaminhoArquivo.getInstance(100000);
+        assertEquals(Paths.get("/tmp/100"), caminhoArquivo.getDiretorio());
+        assertEquals(Paths.get("/tmp/100/100000"), caminhoArquivo.getArquivo());
+
+        caminhoArquivo = CaminhoArquivo.getInstance(1000000);
+        assertEquals(Paths.get("/tmp/1000"), caminhoArquivo.getDiretorio());
+        assertEquals(Paths.get("/tmp/1000/1000000"), caminhoArquivo.getArquivo());
+        */
     }
 
+    @Test
+    public void deveRetornarRuntimeException(){
+        assertEquals(RuntimeException.class , CaminhoArquivo.getInstance().getClass());
+    }
 }
